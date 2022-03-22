@@ -1,0 +1,20 @@
+CREATE SINK CONNECTOR customers_writer WITH (
+        'topics'= 'customers.public.products',
+        'connector.class'= 'io.confluent.connect.jdbc.JdbcSinkConnector',
+        'connection.url'= 'jdbc:mysql://mysql:3306/customer?useSSL=false&serverTimezone=UTC',
+        'connection.user'= 'mysqluser',
+        'connection.password'='mysqlpw',
+        'pk.mode'='record_value',
+        'pk.fields'='id',
+        'insert.mode'='upsert',
+        'value.converter.schema.registry.url'='http://schema-registry:8081',
+        'value.converter'='io.confluent.connect.avro.AvroConverter',
+        'auto.create'='true',
+        'dialect.name'='MySqlDatabaseDialect',
+        'transforms'='dropPrefix,ReplaceField',
+        'transforms.dropPrefix.type'='org.apache.kafka.connect.transforms.RegexRouter',
+        'transforms.dropPrefix.regex'='customers.public.(.*)',
+        'transforms.dropPrefix.replacement'='$1',
+        'transforms.ReplaceField.type'= 'org.apache.kafka.connect.transforms.ReplaceField$Value',
+        'transforms.ReplaceField.blacklist'= '__deleted'
+);
