@@ -1,0 +1,11 @@
+create stream generic_key_value_stream_raw with(value_avro_schema_full_name='com.meetup.sink.schema.GenericKeyValueRawStream', kafka_topic='customers.public.generic_key_value', value_format='avro');
+
+create stream generic_key_value_raw_address_stream with(value_avro_schema_full_name='com.meetup.sink.schema.GenericKeyValueRawAddressStream', kafka_topic='customers.sink.generic_key_value_raw_address', value_format='avro') as select * from generic_key_value_stream_raw where id_type = 'Customers' and key_col in('Address Line 1','Address Line 2', 'city', 'state', 'zip') partition by id emit changes;
+
+create table address_table_map with(value_avro_schema_full_name='com.meetup.sink.schema.AddressTableMap', kafka_topic='customers.sink.address_table_map', value_format='avro') as select id, as_map(collect_list(key_col), collect_list(key_val)) as address_map from generic_key_value_raw_address_stream group by id emit changes;
+
+create stream customer_raw_stream(id varchar, first_name varchar, last_name varchar, email varchar) with (kafka_topic='customers.public.customers', value_format='avro');
+
+ create stream customer_final_stream with(value_avro_schema_full_name='com.meetup.sink.schema.CustomerFinal', kafka_topic='customers.sink.final.customer', value_format='avro') as select * from customer_raw_stream partition by id emit changes;
+
+
