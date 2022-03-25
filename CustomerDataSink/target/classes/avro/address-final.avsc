@@ -1,0 +1,55 @@
+{
+  "type": "record",
+  "name": "AddressTableFinal",
+  "namespace": "com.meetup.sink.schema",
+  "fields": [
+    {
+      "name": "TARGET_CUSTOMER_ID",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null
+    },
+    {
+      "name": "ADDRESS_LINE_1",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "ADDRESS_LINE_2",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "CITY",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "STATE",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "ZIP",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    }
+  ]
+}

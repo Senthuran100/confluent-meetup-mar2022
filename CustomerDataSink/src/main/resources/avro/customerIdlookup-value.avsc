@@ -1,0 +1,23 @@
+{
+  "type": "record",
+  "name": "CustomerIdLookupValue",
+  "namespace": "com.meetup.sink.schema",
+  "fields": [
+    {
+      "name": "CUSTOMER_ID",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "ID",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    }
+  ]
+}

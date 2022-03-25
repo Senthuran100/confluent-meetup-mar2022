@@ -1,0 +1,31 @@
+{
+  "type": "record",
+  "name": "CustomerFinal",
+  "namespace": "com.meetup.sink.schema",
+  "fields": [
+    {
+      "name": "FIRST_NAME",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "LAST_NAME",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "EMAIL",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    }
+  ]
+}
