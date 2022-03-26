@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomerMapper {
 
-    public Customers customerStreamToCustomerEnttiy(String key, CustomerFinal customerFinal) {
+    public Customers customerStreamToCustomerEntity(String key, CustomerFinal customerFinal) {
         Customers customers = new Customers();
-        customers.setCustomerId(key);
+        customers.setCustomerRef(key);
         customers.setEmail(customerFinal.getEMAIL().toString());
         customers.setFirstName(customerFinal.getFIRSTNAME().toString());
         customers.setLastName(customerFinal.getLASTNAME().toString());

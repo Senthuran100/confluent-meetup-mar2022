@@ -25,7 +25,7 @@ ALTER TABLE products AUTO_INCREMENT = 1;
 # Create table customers ...
 CREATE TABLE customers (
   id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  customer_id VARCHAR(12) NOT NULL,
+  customer_ref VARCHAR(12) NOT NULL,
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE KEY

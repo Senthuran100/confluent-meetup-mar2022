@@ -35,6 +35,14 @@ function deploy_ksql_script {
   echo $http_code
 }
 
+
+#create the containers
+
+docker-compose up -d
+
+#sleep for 30 seconds to wait for containers to be up
+sleep 30 
+
 #create topics
 
 docker exec -it broker sh /home/appuser/createTopics.sh 
@@ -60,4 +68,5 @@ curl -X "DELETE" http://localhost:8081/subjects/customers.sink.target.id-value/v
 echo "build and run java sink app"
 mvn -f CustomerDataSink/pom.xml clean install
 
-nohup java -jar CustomerDataSink/target/customer-data-sink-1.0-SNAPSHOT.jar & 
+nohup java -jar CustomerDataSink/target/customer-data-sink-1.0-SNAPSHOT.jar  > data-sink.log 2>&1 &
+

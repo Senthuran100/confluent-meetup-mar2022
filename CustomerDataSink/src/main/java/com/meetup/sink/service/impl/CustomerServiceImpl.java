@@ -26,10 +26,10 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customers handleCustomerEvent(String key, CustomerFinal customerEvent) {
-        Customers customer = customerMapper.customerStreamToCustomerEnttiy(key, customerEvent);
+        Customers customer = customerMapper.customerStreamToCustomerEntity(key, customerEvent);
 
 
-        Optional<Customers> existingCustomer = customersRepository.findByCustomerId(key);
+        Optional<Customers> existingCustomer = customersRepository.findByCustomerRef(key);
         if(existingCustomer.isEmpty()) {
             //new customer
             customer = customersRepository.save(customer);

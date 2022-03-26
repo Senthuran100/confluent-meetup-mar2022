@@ -36,12 +36,12 @@ public class TargetIdPublisher {
 
     public void publishTargetCustomerEvent(Customers customer) {
         try {
-            CustomerIdLookupValue lookupValue = CustomerIdLookupValue.newBuilder().setCUSTOMERID(customer.getCustomerId()).setID(customer.getId()).build();
+            CustomerIdLookupValue lookupValue = CustomerIdLookupValue.newBuilder().setCUSTOMERID(customer.getCustomerRef()).setID(customer.getId()).build();
             ProducerRecord<String, CustomerIdLookupValue> record = new ProducerRecord<>(customerTargetTopic, lookupValue);
 
             kafkaProducer.send(record);
 
-            log.info(String.format(" Published customer Id  %s and target Id %s \n", customer.getCustomerId(), customer.getId().toString()));
+            log.info(String.format(" Published customer Id  %s and target Id %s \n", customer.getCustomerRef(), customer.getId().toString()));
         }
         catch(Exception e) {
             log.error("exception publishing msg", e);

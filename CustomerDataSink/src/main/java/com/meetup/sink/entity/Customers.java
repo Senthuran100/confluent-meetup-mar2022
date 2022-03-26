@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Customers {
 
     private Integer id;
-    private String customerId;
+    private String customerRef;
     private String firstName;
     private String lastName;
     private String email;
@@ -23,13 +23,13 @@ public class Customers {
         this.id = id;
     }
 
-    @Column(name="customer_id")
-    public String getCustomerId() {
-        return customerId;
+    @Column(name="customer_ref")
+    public String getCustomerRef() {
+        return customerRef;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setCustomerRef(String customerRef) {
+        this.customerRef = customerRef;
     }
 
     @Column(name="first_name")
