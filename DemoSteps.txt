@@ -1,0 +1,23 @@
+Steps:
+
+
+1) Explore setup
+
+
+2) View initial synched source data and target data
+
+
+3) Product Pipeline (Plain vanilla with DBZ source connector and Confluent JDBC Sink connector - insert/update case
+
+
+4) Customers pipeline (Pipeline with DBZ source connector , KSQL and SpringCloud Stream Kafka Sink App) - insert 
+
+
+5) Addresss pipeline (Pipeline with DBZ source connector , KSQL and SpringCloud Stream Kafka Sink App)- insert
+
+
+
+
+
+
+

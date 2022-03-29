@@ -1,6 +1,6 @@
 # Demo Repository for Singapore Kafka Meetup March 29th 2022 - Incremental Migration using CDC and KSQL
 
-This demo repository is to show case CDC pipeline using Debezium CDC connector with Kafka, KSQL and Kafka Stream components. The source database is Postgres and target database is MYSQL for the demo
+This demo repository is to show case a CDC pipeline using Debezium CDC connector with Kafka, KSQL and Kafka Stream components. The source database is Postgres and target database is MYSQL for the demo
 
 ## Prerequisites
 - Docker
@@ -13,13 +13,13 @@ This demo repository is to show case CDC pipeline using Debezium CDC connector w
 
 - Docker compose setup (docker-compose.yaml) to bring up containers for Kafka broker, Zookeeper, Schema Registry, KSQL DB Server, KSQLDB CLI using the confluent images.  MYSQL DB and Postgres DB container images are debezium images
 - Debezium connectors for Postgres and MYSQL as well as Confluent JDBC Connect with JDBC jars for different databases. These are present under confluent-hub-components directory. These are available for install usng confluent-hub-client. Refer https://docs.confluent.io/home/connect/self-managed/install.html 
--source_sql and target_sql directories contains SQL scripts initialized in the postgres source DB and MYSQL target DB respectively. These scripts contains the sample tables on both sides for the demo and initialized as part of container creation. This is on top of some sample database/tables available in the images used
+- source_sql and target_sql directories contains SQL scripts initialized in the postgres source DB and MYSQL target DB respectively. These scripts contains the sample tables on both sides for the demo and initialized as part of container creation. This is on top of some sample database/tables available in the images used
 - custom-config.conf file present under postgres directory which is used during the postgres container initialization to pass some custom configuration for the debezium postgres connector to work
 - topics directory which contains script to create topics as well as a file with the list of topics to create
 - postgres-source-connector.txt which has the connector configuration to source data from Postgres DB. This can be executed in KSQL to create an embedded source connector. Source connector is used to replicate the Products table.
 - mysql-target-connector.txt which has the connector configuration to sink data to MySQL DB. This can be executed in KSQL to create an embedded sink connector
 - ksql_scripts.txt which has the different KSQL scripts used in the demo to create some streams and tables. These scripts are used to replicate the Customers and Addresses table 
-- CustomerDataSink is a Springboot project with Spring Cloud Stream used as a Sink Java app. This is used to persist Customer Entities and publish the new primary key from the target DB which can be used by child entities which helps to synchronize creation of a parent entity well before a child entity can be created in target
+- CustomerDataSink is a Springboot project with Spring Cloud Stream used as a Sink Java app. This is used to persist Customer Entities and publish the new primary key from the target DB which can be used by child entities which helps to synchronize creation of a parent entity well before a child entity can be created in target. This app is configured to run outside the container 
 - setupPipeline.sh is a script which is used to creates and brings up the containers , create topic, deploy connectors and KSQL scripts, build and run the Java sink app. 
 - teardownPipeline.sh is a script which stops the java app and deletes the containers
 
